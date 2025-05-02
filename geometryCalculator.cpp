@@ -10,7 +10,10 @@ namespace GeometryOption
 
     void App::printMainMenu()
     {
-        cout << "HELLO" << endl;
+        cout << "----------------------------------" << endl;
+        cout << "This calculator make by" << endl;
+        cout << "Peeranat Luangaram 6738228" << endl;
+        cout << "----------------------------------" << endl;
         cout << "I am GeoCalculator" << endl;
         cout << "Please select a program option:" << endl;
         cout << "----------------------------------" << endl;
