@@ -128,8 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="geometryCalculator.cpp" />
-    <ClCompile Include="geometryCalculator.hpp" />
+    <ClCompile Include="geometryCalculatorMenu.hpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Shape3DCalculator.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Shape2DCalculator.cpp" />
+    <ClInclude Include="Shape2DCalculator.hpp" />
+    <ClCompile Include="Shape3DCalculator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

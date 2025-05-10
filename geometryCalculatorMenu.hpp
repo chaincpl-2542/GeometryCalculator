@@ -4,7 +4,6 @@
 
 namespace GeometryOption
 {
-
     enum ShapeType
     {
         ShapeType_None = 0,
@@ -43,25 +42,6 @@ namespace GeometryOption
         void printMainMenu();
         void print2DShapeMenu();
         void print3DShapeMenu();
-
-        //Shape2D
-        void calculateSquareProperties();
-        void calculateRectangleProperties();
-        void calculateTriangleProperties();
-        void calculateCircleProperties();
-        void calculateTrapezoidProperties();
-        void calculateEllipesProperties();
-
-        //Shape 3D
-        void calculateCubeProperties();
-        void calculateSphereProperties();
-        void calculateCylinderProperties();
-        void calculateConeProperties();
-        void calculateSquarePyramidProperties();
-        void calculateTriangularPyramidProperties();
-        void calculateEllipsoidProperties();
-        void calculateRectangularProperties();
-
         void printAbout();
     };
 }

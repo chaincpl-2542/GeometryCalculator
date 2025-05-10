@@ -1,7 +1,9 @@
 #include <iostream>
 #include <map>
 #include <functional>
-#include "GeometryCalculator.hpp"
+#include "GeometryCalculatorMenu.hpp"
+#include "Shape2DCalculator.hpp"
+#include "Shape3DCalculator.hpp"
 
 using namespace std;
 using namespace GeometryOption;
@@ -13,25 +15,27 @@ Shape3DType shape3DType = Shape3DType::Shape3D_None;
 void main()
 {
 	App app = App();
+	_2DShapeApp _2dApp = _2DShapeApp();
+	_3DShapeApp _3dApp = _3DShapeApp();
 
 	map<Shape2DType, function<void()>> shape2DCalculators = {
-		{Shape2DType::Square, [&app]() {app.calculateSquareProperties(); }},
-		{Shape2DType::Rectangle, [&app]() {app.calculateRectangleProperties(); }},
-		{Shape2DType::Triangle, [&app]() {app.calculateTriangleProperties(); }},
-		{Shape2DType::Circle, [&app]() {app.calculateCircleProperties(); }},
-		{Shape2DType::Trapezoid, [&app]() {app.calculateTrapezoidProperties(); }},
-		{Shape2DType::Ellipes, [&app]() {app.calculateEllipesProperties(); }},
+		{Shape2DType::Square, [&_2dApp]() {_2dApp.calculateSquareProperties(); }},
+		{Shape2DType::Rectangle, [&_2dApp]() {_2dApp.calculateRectangleProperties(); }},
+		{Shape2DType::Triangle, [&_2dApp]() {_2dApp.calculateTriangleProperties(); }},
+		{Shape2DType::Circle, [&_2dApp]() {_2dApp.calculateCircleProperties(); }},
+		{Shape2DType::Trapezoid, [&_2dApp]() {_2dApp.calculateTrapezoidProperties(); }},
+		{Shape2DType::Ellipes, [&_2dApp]() {_2dApp.calculateEllipesProperties(); }},
 	};
 
 	map<Shape3DType, function<void()>> shape3DCalculators = {
-		{Shape3DType::Cube, [&app]() {app.calculateCubeProperties(); }},
-		{Shape3DType::Sphere, [&app]() {app.calculateSphereProperties(); }},
-		{Shape3DType::Cylinder, [&app]() {app.calculateCylinderProperties(); }},
-		{Shape3DType::Cone, [&app]() {app.calculateConeProperties(); }},
-		{Shape3DType::SquarePyramid, [&app]() {app.calculateSquarePyramidProperties(); }},
-		{Shape3DType::TriangularPyramid, [&app]() {app.calculateTriangularPyramidProperties(); }},
-		{Shape3DType::Ellipsoid, [&app]() {app.calculateEllipsoidProperties(); }},
-		{Shape3DType::Rectangular, [&app]() {app.calculateRectangularProperties(); }},
+		{Shape3DType::Cube, [&_3dApp]() {_3dApp.calculateCubeProperties(); }},
+		{Shape3DType::Sphere, [&_3dApp]() {_3dApp.calculateSphereProperties(); }},
+		{Shape3DType::Cylinder, [&_3dApp]() {_3dApp.calculateCylinderProperties(); }},
+		{Shape3DType::Cone, [&_3dApp]() {_3dApp.calculateConeProperties(); }},
+		{Shape3DType::SquarePyramid, [&_3dApp]() {_3dApp.calculateSquarePyramidProperties(); }},
+		{Shape3DType::TriangularPyramid, [&_3dApp]() {_3dApp.calculateTriangularPyramidProperties(); }},
+		{Shape3DType::Ellipsoid, [&_3dApp]() {_3dApp.calculateEllipsoidProperties(); }},
+		{Shape3DType::Rectangular, [&_3dApp]() {_3dApp.calculateRectangularProperties(); }},
 	};
 
 	while (true)
@@ -40,6 +44,12 @@ void main()
 
 		app.printMainMenu();
 		cin >> choice;
+		if (cin.fail() || choice > 3) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ล้าง input ที่ไม่ถูกต้อง
+			cout << "Invalid input. Please try again.\n";
+			continue;
+		}
 
 		switch (choice)
 		{
@@ -54,8 +64,6 @@ void main()
 			continue;
 		case 0:
 			return;
-		default:
-			continue;
 		}
 
 		if (shapeType == ShapeType::Shape2D)
@@ -99,6 +107,9 @@ void main()
 			if (shape2DCalculators.find(shape2DType) != shape2DCalculators.end())
 			{
 				shape2DCalculators[shape2DType]();
+				cin.ignore();
+				cout << "Press Enter to continue...";
+				cin.get();
 			}
 
 		}
@@ -151,6 +162,9 @@ void main()
 			if (shape3DCalculators.find(shape3DType) != shape3DCalculators.end())
 			{
 				shape3DCalculators[shape3DType]();
+				cin.ignore();
+				cout << "Press Enter to continue...";
+				cin.get();
 			}
 		}
 	}
